@@ -7,10 +7,30 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ScrollableTabRow
+import androidx.compose.material3.Tab
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,6 +41,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.asian_food.ui.theme.Asian_foodTheme
 
+
+/*
+This app highlights the most popular dishes from three East Asian countries: China, Korea, and Japan.
+User switches between three countries by clicking on the tab inside ScrollableTabRow.
+All dishes are displayed inside a Card with an image and the name of the dish.
+Cards are organized in a LazyColumn.
+We opted for a simplistic design because we don't want to distract the user from the delicious food.
+ */
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +58,7 @@ class MainActivity : ComponentActivity() {
             Asian_foodTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     AsianFoodTour(
-                        name = "Asian Food Tour",
+                        name = "East Asian Food Tour",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -113,7 +142,9 @@ fun AsianFoodTour(name: String, modifier: Modifier) {
                         fontWeight = FontWeight.Bold,
                         fontSize = 22.sp,
                         color = Color.White,
-                        modifier = modifier.fillMaxWidth().wrapContentWidth(Alignment.CenterHorizontally)
+                        modifier = modifier
+                            .fillMaxWidth()
+                            .wrapContentWidth(Alignment.CenterHorizontally)
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = appBarColor)
